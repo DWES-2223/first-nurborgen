@@ -12,7 +12,7 @@ class BuclesCest
     public function try220WorksTest(AcceptanceTester $I)
     {
         $I->amOnPage('/220.php');
-        $I->seeInSource('<ul> <li>2</li>');
+        $I->seeInSource('<ul><li>2</li>');
         $I->see('14');
         $I->see('26');
         $I->see('38');
