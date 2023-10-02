@@ -2,8 +2,8 @@
 global $records; ?>
 <table>
     <thead>
-        <tr>
-            <th>Prova</th>
+    <!-- Capçalera de la taula -->
+        <tr><th>Prova</th>
             <th>Marca</th>
             <th>Atleta</th>
             <th>Natalici</th>
@@ -14,8 +14,8 @@ global $records; ?>
     </thead>
     <tbody>
     <?php foreach ($records as $atleta => $record) { ?>
-        <tr>
-            <td><?= $atleta ?></td>
+        <!-- Cos de la taula -->
+        <tr><td><?= $atleta ?></td>
             <td><?= $record['marca'] ?></td>
             <td><?= $record['atleta'] ?></td>
             <td><?= $record['natalici'] ?></td>
