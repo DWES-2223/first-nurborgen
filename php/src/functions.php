@@ -1,58 +1,50 @@
 <?php
+function array_column_ext($array, $columnkey, $indexkey = null) {
+    $result = array();
+    foreach ($array as $subarray => $value) {
+        if (array_key_exists($columnkey,$value)) { $val = $array[$subarray][$columnkey]; }
+        else if ($columnkey === null) { $val = $value; }
+        else { continue; }
 
-function esParell(int $a) : bool
-{
-    return $a%2 == 0;
-}
-
-function arrayAleatori(int $tam, int $min, int $max) : array
-{
-    $array=[];
-    for($i = 0; $i < $tam; $i++) {
-        array_push($array, rand($min, $max));
-    }
-    return $array;
-}
-
-function countParells(array $array): int
-{
-    $count = 0;
-    foreach ($array as $num) {
-        if(esParell($num)) {
-            $count++;
+        if ($indexkey === null) { $result[] = $val; }
+        elseif ($indexkey == -1 || array_key_exists($indexkey,$value)) {
+            $result[($indexkey == -1)?$subarray:$array[$subarray][$indexkey]] = $val;
         }
     }
-    return $count;
+    return $result;
 }
 
-function major():int
+function vell(array $records)
 {
-    $major = 0;
-    foreach (func_get_args() as $num) {
-        if($num > $major) {
-            $major = $num;
+    $dataInit = $records[0]['data'];
+    $vell = 0;
+    for($i = 0; $i < count($records); $i++) {
+        if( fecha_inglesa($records[$i]['data']) < fecha_inglesa($dataInit)) {
+            $dataInit = fecha_inglesa($records[$i]['data']);
+            $vell = $i;
         }
     }
-    return $major;
+    return $vell;
 }
 
-function concatenar(...$paraules): string
-{
-    $frase = '';
-    foreach (func_get_args() as $paraula) {
-        $frase .= $paraula . ' ';
+function fecha_inglesa($data) {
+    return date('Y/m/d', strtotime($data));
+}
+
+function laureado(array $record) {
+    $contador = array_count_values($record);
+    arsort($contador);
+    return array_key_first($contador);
+}
+
+function jove($array) {
+    $jove = $array[0];
+    $diff = 100;
+    foreach ($array as $item) {
+        $edat = $item['natalici'] - date('Y', strtotime($item['data']));
+        if($edat < $diff) {
+            $jove = $item;
+        }
     }
-    return $frase;
-}
-
-function digits(int $num): int
-{
-    $num = (string)$num;
-    return strlen($num);
-}
-
-function digitsN(int $num, int $post): int
-{
-    $num = (string)$num;
-    return $num[$post - 1];
+    return $jove;
 }

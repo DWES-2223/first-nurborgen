@@ -78,10 +78,8 @@
     </div>
 </form>
 <?php
-extract($_POST)
-?>
-<body>
-<?php if(isset($prova)) {
+extract($_POST);
+ if(isset($prova)) {
     include_once("atletes.php");
     global $records;
     if(array_key_exists($prova, $records)){
@@ -92,7 +90,7 @@ extract($_POST)
             $records[$prova]['data'] = $data;
             $records[$prova]['lloc'] = $lloc;
             $records[$prova]['marca'] = $marca;
-            include_once('270.php');
+            include_once('270a.php');
         }
     } else {
         echo "La prova " . $prova . " no existeix en la llista de records oficials de la FEA";
