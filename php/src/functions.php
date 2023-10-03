@@ -34,6 +34,7 @@ function fecha_inglesa($data) {
 function laureado(array $record) {
     $contador = array_count_values($record);
     arsort($contador);
+    $repetit = reset($contador);
     return array_key_first($contador);
 }
 
@@ -47,4 +48,9 @@ function jove($array) {
         }
     }
     return $jove;
+}
+
+function any($fecha){
+    $fechaPartida = explode('.',$fecha);
+    return $fechaPartida[2];
 }
